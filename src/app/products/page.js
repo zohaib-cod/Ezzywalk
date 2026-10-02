@@ -12,7 +12,7 @@ export default async function ProductsPage({ searchParams }) {
     if (brand) query.append('brand', brand);
     if (search) query.append('search', search);
 
-    const url = `http://127.0.0.1:5000/api/products?${query.toString()}`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL || "https://ezzywalk-b.vercel.app"}/api/products?${query.toString()}`;
     const res = await fetch(url, { cache: 'no-store' });
     if (res.ok) {
       products = await res.json();

@@ -822,7 +822,7 @@ export default function MorphOrb(props) {
 
   const defaultSubmit = async (text) => {
      try {
-       const response = await fetch('http://127.0.0.1:5000/api/ai/chat', {
+       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://ezzywalk-b.vercel.app"}/api/ai/chat`, {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify({

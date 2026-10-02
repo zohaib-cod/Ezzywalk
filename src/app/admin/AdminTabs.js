@@ -23,7 +23,7 @@ export default function AdminTabs({ users, token, userRole }) {
   const handleInvite = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://127.0.0.1:5000/api/admin/invite-admin', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://ezzywalk-b.vercel.app"}/api/admin/invite-admin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ email: inviteEmail })
@@ -38,7 +38,7 @@ export default function AdminTabs({ users, token, userRole }) {
   const requestOtp = async () => {
     if (!profileForm.oldEmail) return showToast('Enter your current email first', 'error');
     try {
-      const res = await fetch('http://127.0.0.1:5000/api/admin/request-password-change', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://ezzywalk-b.vercel.app"}/api/admin/request-password-change`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ email: profileForm.oldEmail })
@@ -51,7 +51,7 @@ export default function AdminTabs({ users, token, userRole }) {
   const handleProfileSave = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://127.0.0.1:5000/api/admin/change-profile', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://ezzywalk-b.vercel.app"}/api/admin/change-profile`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(profileForm)
@@ -70,7 +70,7 @@ export default function AdminTabs({ users, token, userRole }) {
       message: `Are you sure you want to ${actionName.toLowerCase()} this admin?`,
       action: async () => {
         try {
-          const res = await fetch('http://127.0.0.1:5000/api/admin/block-admin', {
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://ezzywalk-b.vercel.app"}/api/admin/block-admin`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
             body: JSON.stringify({ adminId, isBlocked })
@@ -90,7 +90,7 @@ export default function AdminTabs({ users, token, userRole }) {
       message: 'Are you sure you want to promote this user to Master Admin? This action gives them full control over the system.',
       action: async () => {
         try {
-          const res = await fetch('http://127.0.0.1:5000/api/admin/promote-admin', {
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://ezzywalk-b.vercel.app"}/api/admin/promote-admin`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
             body: JSON.stringify({ adminId })
@@ -130,7 +130,7 @@ export default function AdminTabs({ users, token, userRole }) {
       const formData = new FormData();
       formData.append('image', bannerImageFile);
       try {
-        const uploadRes = await fetch('http://127.0.0.1:5000/api/admin/upload', {
+        const uploadRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://ezzywalk-b.vercel.app"}/api/admin/upload`, {
           method: 'POST',
           headers: { 'Authorization': `Bearer ${token}` },
           body: formData
@@ -152,7 +152,7 @@ export default function AdminTabs({ users, token, userRole }) {
     }
 
     try {
-      const res = await fetch('http://127.0.0.1:5000/api/banners', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://ezzywalk-b.vercel.app"}/api/banners`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

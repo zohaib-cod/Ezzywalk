@@ -70,7 +70,7 @@ export default function ProductsManager({ initialProducts, token }) {
       const formData = new FormData();
       formData.append('image', imageFile);
       try {
-        const uploadRes = await fetch('http://127.0.0.1:5000/api/admin/upload', {
+        const uploadRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://ezzywalk-b.vercel.app"}/api/admin/upload`, {
           method: 'POST',
           headers: { 'Authorization': `Bearer ${token}` },
           body: formData
@@ -91,8 +91,8 @@ export default function ProductsManager({ initialProducts, token }) {
     }
 
     const url = editingId 
-      ? `http://127.0.0.1:5000/api/admin/products/${editingId}`
-      : `http://127.0.0.1:5000/api/admin/products`;
+      ? `${process.env.NEXT_PUBLIC_API_URL || "https://ezzywalk-b.vercel.app"}/api/admin/products/${editingId}`
+      : `${process.env.NEXT_PUBLIC_API_URL || "https://ezzywalk-b.vercel.app"}/api/admin/products`;
     const method = editingId ? 'PUT' : 'POST';
 
     try {

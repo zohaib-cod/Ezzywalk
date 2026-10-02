@@ -17,7 +17,7 @@ export async function createOrder(orderData) {
       headers['Authorization'] = `Bearer ${session.user.backendToken}`;
     }
 
-    const res = await fetch('http://127.0.0.1:5000/api/orders', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://ezzywalk-b.vercel.app"}/api/orders`, {
       method: 'POST',
       headers,
       body: JSON.stringify(orderData)
