@@ -8,7 +8,7 @@ export const metadata = {
 export default async function SalePage() {
   let saleProducts = [];
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/products/sale`, { cache: 'no-store' });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://ezzywalk-b.vercel.app"}/api/products/sale`, { cache: 'no-store' });
     if (res.ok) {
       saleProducts = await res.json();
     }

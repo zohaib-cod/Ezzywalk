@@ -112,7 +112,7 @@ export default function AdminTabs({ users, token, userRole }) {
 
   useEffect(() => {
     if (activeTab === 'banner') {
-      fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/banners`)
+      fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://ezzywalk-b.vercel.app"}/api/banners`)
         .then(res => res.json())
         .then(data => {
           if (data) setBannerForm(data);
