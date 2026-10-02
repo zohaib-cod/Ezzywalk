@@ -5,7 +5,7 @@ import HeroSlider from '@/components/HeroSlider';
 export default async function HomePage() {
   let trendingProducts = [];
   try {
-    const res = await fetch('http://localhost:5000/api/products', { cache: 'no-store' });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/products`, { cache: 'no-store' });
     if (res.ok) {
       const allProducts = await res.json();
       trendingProducts = allProducts.slice(0, 4);
@@ -16,7 +16,7 @@ export default async function HomePage() {
 
   let banner = null;
   try {
-      const res = await fetch('http://localhost:5000/api/banners', { cache: 'no-store' });
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/banners`, { cache: 'no-store' });
       if (res.ok) {
         banner = await res.json();
       }

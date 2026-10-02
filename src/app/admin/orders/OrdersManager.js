@@ -8,7 +8,7 @@ export default function OrdersManager({ initialOrders, token }) {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/admin/orders/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/admin/orders/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export default function OrdersManager({ initialOrders, token }) {
       message: 'Are you sure you want to delete this order? This action cannot be undone.',
       action: async () => {
         try {
-          const res = await fetch(`http://localhost:5000/api/admin/orders/${id}`, {
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/admin/orders/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
           });

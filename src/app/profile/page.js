@@ -17,7 +17,7 @@ export default async function ProfilePage() {
 
   let orders = [];
   try {
-    const res = await fetch('http://localhost:5000/api/orders/me', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/orders/me`, {
       headers: {
         'Authorization': `Bearer ${session.user.backendToken}`
       },

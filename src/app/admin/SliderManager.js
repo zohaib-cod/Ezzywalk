@@ -23,7 +23,7 @@ export default function SliderManager({ token, showToast }) {
   const fetchSlides = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/heroSlides');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/heroSlides`);
       const data = await res.json();
       setSlides(data);
     } catch (e) {
@@ -61,7 +61,7 @@ export default function SliderManager({ token, showToast }) {
   const handleDelete = async (id) => {
     if (!confirm('Are you sure you want to delete this slide?')) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/heroSlides/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/heroSlides/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -85,7 +85,7 @@ export default function SliderManager({ token, showToast }) {
       const formData = new FormData();
       formData.append('image', imageFile);
       try {
-        const uploadRes = await fetch('http://localhost:5000/api/admin/upload', {
+        const uploadRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/admin/upload`, {
           method: 'POST',
           headers: { 'Authorization': `Bearer ${token}` },
           body: formData
@@ -113,7 +113,7 @@ export default function SliderManager({ token, showToast }) {
 
     const payload = { ...form, imageUrl: finalImageUrl };
     const method = form.id ? 'PUT' : 'POST';
-    const url = form.id ? `http://localhost:5000/api/heroSlides/${form.id}` : `http://localhost:5000/api/heroSlides`;
+    const url = form.id ? `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/heroSlides/${form.id}` : `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/heroSlides`;
 
     try {
       const res = await fetch(url, {
